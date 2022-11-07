@@ -1180,7 +1180,7 @@
 	.t-feed__post-preloader_row .t-feed__post-preloader__img {
 		width: 100%;
 		height: auto;
-		padding-bottom: 75%;
+		padding-bottom: 0%;
 	}
 	.t-feed__post-preloader_row .t-feed__post-preloader__textwrapper {
 		margin-left: 0;
