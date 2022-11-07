@@ -226,4 +226,8 @@ for (const l of tElements) {
 	n++;
 }
 
+let tlgElements = document.querySelectorAll(".fa");
+for (const tlg of tlgElements) {
+	tlg.style.color = "#ffffff";
+}
 
