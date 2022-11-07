@@ -192,10 +192,17 @@ const news = {
 
 let divElements = document.querySelectorAll(".t-feed__post-preloader__img");
 let n = 0;
+let str = "";
+
 for (const _div of divElements) {
 	let i = 0;
 	_div.style.height = "100 %";
 	_div.style.width = "auto";
+	str = _div.baseURI.toString();
+	if (!str.includes("page8629856")) {
+		_div.style.width = "210px";
+		_div.style.marginLeft = "75px";
+	}
 	for (const child of _div.children) {
 		child.src = news.posts[n].image;
 		child.alt = news.posts[n].title;
@@ -210,10 +217,10 @@ for (const l of tElements) {
 	let i = 0;
 	for (const child of l.children) {
 		child.textContent = news.posts[n].postparts[i];
-		let str = child.baseURI.toString();
+		str = child.baseURI.toString();
 		if (str.includes("page8629856")) {
 			child.style.color = "#ffffff";
-		} else { child.style.color = "#030ffc"; }
+		} else { child.style.color = "#150936"; }
 		i++;
 	}
 	n++;
