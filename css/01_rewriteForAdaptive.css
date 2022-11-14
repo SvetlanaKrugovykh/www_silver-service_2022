@@ -65,16 +65,30 @@
 }
 
 .popup-bm {
+	margin: auto;
 	background-color: #1c008a;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	color: white;
 }
 .popup-bm .menu-nav {
 	list-style-type: none; /* Remove bullets */
 	line-height: 2; /* Add space between links */
+}
+
+.menu-nav {
+	margin: 10px;
+}
+
+.popup-bm .menu-nav a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 1.5rem;
+}
+
+.popup-bm .menu-nav > li > a:visited {
+	color: white !important;
 }
 
 .popup-bm .menu-nav > li > a:focus {
