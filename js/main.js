@@ -1,3 +1,68 @@
+//#region pageContentNames
+const pageContent = [
+	{
+		"page": "SILVER_SERVICE",
+		"basePage": "index.html",
+		"forHide": ["div[field='tn_text_1578322192366']",
+			"[id ^= 'rec149442898']",
+			"[id ^= 'rec149504840']",
+			"[id ^= 'rec149521426']",
+			".owl-stage-outer"
+		],
+		"keysForReDefine": [".t-feed__post-preloader__textwrapper"],
+		"valuesForReDefine": ["font-size: 18px;"],
+		"toAdd": [
+			{
+				"id": "imageIndex_1",
+				"where": "[id ^= 'rec153154582']",
+				"img": "images/backgrIndex.png",
+				"href": "index.html"
+			}
+		]
+	},
+	{
+		"page": "INTERNET",
+		"basePage": "page8498574.html",
+		"forHide": ["div[field='tn_text_1578322192366']",
+			"[id ^= 'rec149442898']",
+			"[id ^= 'rec149504840']",
+			"[id ^= 'rec149521426']",
+			".owl-stage-outer"
+		],
+		"keysForReDefine": [".t-feed__post-preloader__textwrapper"],
+		"valuesForReDefine": ["font-size: 18px;"],
+		"toAdd": [
+			{
+				"id": "imageIndex_1",
+				"where": "[id ^= 'rec153154582']",
+				"img": "images/backgrIndex.png",
+				"href": "index.html"
+			}
+		]
+	},
+	{
+		"page": "TV",
+		"basePage": "SILVER_SERVICE",
+		"forHide": ["div[field='tn_text_1578322192366']",
+			"[id ^= 'rec149442898']",
+			"[id ^= 'rec149504840']",
+			"[id ^= 'rec149521426']",
+			".owl-stage-outer"
+		],
+		"keysForReDefine": [".t-feed__post-preloader__textwrapper"],
+		"valuesForReDefine": ["font-size: 18px;"],
+		"toAdd": [
+			{
+				"id": "imageIndex_1",
+				"where": "[id ^= 'rec153154582']",
+				"img": "images/backgrTV.png",
+				"href": "index.html"
+			}
+		]
+	}
+];
+//#endregion
+
 const menuBtn = document.querySelector('.menu-btn');
 const hamburger = document.querySelector('.menu-btn__burger');
 const nav = document.querySelector('.nav');
@@ -7,6 +72,7 @@ const tHeader = document.querySelector("#t-header");
 const popup = document.querySelector("#popup-bm");
 
 let showMenu = false;
+
 choiceHeader();
 
 window.addEventListener('resize', choiceHeader);
@@ -26,9 +92,11 @@ function choiceHeader() {
 		menuBtn.removeAttribute("hidden");
 		popup.removeAttribute("hidden");
 		toggleMenu();
+		launchPageRebuilding();
 	}
 }
 
+//#region toggleMenu
 menuBtn.addEventListener('click', toggleMenu);
 
 
@@ -67,6 +135,71 @@ function toggleMenu() {
 		navItems.forEach(item => item.classList.remove('open'));
 		showMenu = false;
 	}
-}
 
+}
+//#endregion 
+
+
+//#region rewriteForAdaptuve
+
+//#region hidingElements
+function hideDivs() {
+	for (const page of pageContent) {
+		if (document.baseURI.includes(page.basePage)) {
+			for (let element of page.forHide) {
+				try {
+					let elements = document.querySelectorAll(element);
+					for (let elem of elements) {
+						if (elem != null) elem.setAttribute("style", "display: none");
+					}
+				} catch (error) { console.log(error); }
+			}
+			break;
+		}
+	}
+}
+//#endregion
+
+//#region reDefineElements
+function reDefineDivs() {
+
+	for (const page of pageContent) {
+		if (document.baseURI.includes(page.basePage)) {
+			let i = 0;
+			for (let element of page.keysForReDefine) {
+				i++;
+				try {
+					let elements = document.querySelectorAll(element);
+					for (let elem of elements) {
+						if (elem != null) elem.setAttribute("style", page.valuesForReDefine[i - 1]);
+					}
+				} catch (error) { console.log(error); }
+			}
+			for (let element of page.toAdd) {
+				let where = document.querySelector(element.where);
+				let img = document.createElement("img");
+				let a = document.createElement("a");
+				a.id = element.id;
+				a.href = element.href;
+				a.style.display = "flex";
+				img.style.width = "100%";
+				img.src = element.img;
+				if (document.querySelector(`[id ^= '${element.id}']`) == null) {
+					where.insertAdjacentElement("beforebegin", a);
+					a.appendChild(img);
+				}
+			}
+			break;
+		}
+	}
+}
+//#endregion
+
+
+//#region calls
+function launchPageRebuilding() {
+	hideDivs();
+	if (window.innerWidth <= 768) reDefineDivs();
+}
+//#endregion
 

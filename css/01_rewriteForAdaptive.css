@@ -99,6 +99,10 @@
 	border-bottom: 1px solid;
 }
 
+#Telegram {
+	color: white !important;
+}
+
 #Telegram > a:visited {
 	color: white !important;
 }
