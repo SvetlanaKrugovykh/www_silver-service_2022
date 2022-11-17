@@ -10,7 +10,7 @@ const pageContent = [
 			".owl-stage-outer"
 		],
 		"keysForReDefine": [".t-feed__post-preloader__textwrapper"],
-		"valuesForReDefine": ["font-size: 18px;"],
+		"valuesForReDefine": ["font-size: 14px;"],
 		"toAdd": [
 			{
 				"id": "imageIndex_1",
