@@ -23,40 +23,38 @@ const pageContent = [
 	{
 		"page": "INTERNET",
 		"basePage": "page8498574.html",
-		"forHide": ["div[field='tn_text_1578322192366']",
-			"[id ^= 'rec149442898']",
-			"[id ^= 'rec149504840']",
-			"[id ^= 'rec149521426']",
-			".owl-stage-outer"
+		"forHide": [
+			".t396",
+			"#rec150333633",
+			"#rec150338650",
+			"#rec150333603"
 		],
-		"keysForReDefine": [".t-feed__post-preloader__textwrapper"],
-		"valuesForReDefine": ["font-size: 18px;"],
+		"keysForReDefine": [],
+		"valuesForReDefine": [],
 		"toAdd": [
 			{
-				"id": "imageIndex_1",
-				"where": "[id ^= 'rec153154582']",
+				"id": "imageIndex_2",
+				"where": "#t-footer",
 				"img": "images/backgrIndex.png",
-				"href": "index.html"
+				"href": "page8498574.html"
 			}
 		]
 	},
 	{
 		"page": "TV",
-		"basePage": "SILVER_SERVICE",
-		"forHide": ["div[field='tn_text_1578322192366']",
-			"[id ^= 'rec149442898']",
-			"[id ^= 'rec149504840']",
-			"[id ^= 'rec149521426']",
-			".owl-stage-outer"
+		"basePage": "page8629852.html",
+		"forHide": [
+			".t396",
+			"#rec153306226"
 		],
-		"keysForReDefine": [".t-feed__post-preloader__textwrapper"],
-		"valuesForReDefine": ["font-size: 18px;"],
+		"keysForReDefine": [],
+		"valuesForReDefine": [],
 		"toAdd": [
 			{
-				"id": "imageIndex_1",
-				"where": "[id ^= 'rec153154582']",
+				"id": "imageIndex_3",
+				"where": "#t-footer",
 				"img": "images/backgrTV.png",
-				"href": "index.html"
+				"href": "page8629852.html"
 			}
 		]
 	}
@@ -177,6 +175,7 @@ function reDefineDivs() {
 			}
 			for (let element of page.toAdd) {
 				let where = document.querySelector(element.where);
+				if (where == null) continue;
 				let img = document.createElement("img");
 				let a = document.createElement("a");
 				a.id = element.id;
@@ -199,7 +198,7 @@ function reDefineDivs() {
 //#region calls
 function launchPageRebuilding() {
 	hideDivs();
-	if (window.innerWidth <= 768) reDefineDivs();
+	reDefineDivs();
 }
 //#endregion
 
