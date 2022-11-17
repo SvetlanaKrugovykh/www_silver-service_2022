@@ -52,7 +52,8 @@ const pageContent = [
 			"index.html",
 			"www.silver-service.com.ua",
 			"www.xn--80aa2aboqt7n.xn--j1amh",
-			"www.xn--80acd5bg5aou4k.net"
+			"www.xn--80acd5bg5aou4k.net",
+			"www_silver-service_2022"
 		],
 		"forHide": ["div[field='tn_text_1578322192366']",
 			"[id ^= 'rec149442898']",
