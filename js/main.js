@@ -100,12 +100,14 @@ const menuNav = document.querySelector('.menu-nav');
 const navItems = document.querySelectorAll('.menu-nav__item');
 const tHeader = document.querySelector("#t-header");
 const popup = document.querySelector("#popup-bm");
+const submitButton = document.querySelector('.t-submit')
 
 let showMenu = false;
 
 choiceHeader();
 
 window.addEventListener('resize', choiceHeader);
+submitButton.addEventListener('click', handleSubmitButton)
 
 function choiceHeader() {
   if (window.innerWidth > 768) {
@@ -230,6 +232,32 @@ function reDefineDivs() {
 }
 //#endregion
 
+function handleSubmitButton(event) {
+  event.preventDefault()
+  const phone = this.form.elements["Phone"].value
+  const name = this.form.elements["Name"].value
+
+  if (phone !== '' && name !== '') {
+    console.log('Button clicked! Phone number: ' + phone + ' Name: ' + name)
+
+    const xhr = new XMLHttpRequest()
+    const url = 'http://' + window.location.hostname + ':8000/submit-form/'
+    const data = JSON.stringify({ phone, name })
+
+    xhr.open('POST', url, true)
+    xhr.setRequestHeader('Content-Type', 'application/json')
+
+    xhr.onload = function () {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        console.log('Form data sent successfully!')
+      } else {
+        console.error('Form data sending failed.')
+      }
+    }
+
+    xhr.send(data)
+  }
+}
 
 //#region calls
 function launchPageRebuilding() {
